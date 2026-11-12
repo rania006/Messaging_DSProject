@@ -1,0 +1,138 @@
+/* ---------- Variables ---------- */
+:root {
+  --green: #118811;
+  --green-dark: #158415;
+  --green-deep: #166534;
+  --border: #dfecdf;
+  --border-strong: #cbdccb;
+  --bg-soft: #f4fbf4;
+  --bg-active: #e7fee7;
+  --bg-received: #ebf5eb;
+  --text: #12141c;
+  --text-2: #4b5263;
+  --muted: #5f6677;
+  --font: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; }
+body { font-family: var(--font); color: var(--text); -webkit-font-smoothing: auto; }
+button { border: none; background: transparent; font: inherit; color: inherit; cursor: pointer; }
+input { border: none; outline: none; background: transparent; font: inherit; }
+svg { display: block; flex-shrink: 0; }
+[hidden] { display: none !important; }
+
+/* ---------- App layout ---------- */
+.app {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  overflow: hidden;
+}
+.sidebar { width: 28.6%; min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--border); }
+.chat    { width: 48.2%; min-width: 0; display: flex; flex-direction: column; }
+.profile { width: 23.2%; min-width: 0; display: flex; flex-direction: column; align-items: center;
+           gap: 15px; padding: 24px 24px 0; border-left: 1px solid var(--border); }
+
+/* ---------- Shared pieces ---------- */
+.icon { width: 19px; height: 19px; }
+.icon--sm { width: 17px; height: 17px; }
+.icon-btn { display: grid; place-items: center; }
+
+.avatar {
+  display: grid; place-items: center; flex-shrink: 0;
+  width: 47px; height: 47px; border-radius: 50%;
+  font-size: 18px; font-weight: 600;
+  background: var(--bg-active); color: var(--green-dark);
+}
+.avatar--sm { width: 43px; height: 43px; font-size: 16px; }
+.avatar--lg { width: 77px; height: 77px; font-size: 29px; }
+.avatar--mint  { background: #e7f6ec; color: var(--green-deep); }
+.avatar--amber { background: #fef3e2; color: #b45309; }
+.avatar--red   { background: #fdecec; color: #b91c1c; }
+
+.badge {
+  display: grid; place-items: center; flex-shrink: 0;
+  min-width: 21px; height: 21px; border-radius: 11px;
+  background: var(--green); color: #fff;
+  font-size: 12px; font-weight: 700;
+}
+
+.search-box, .composer {
+  display: flex; align-items: center;
+  border: 1px solid var(--border); background: var(--bg-soft);
+  color: var(--muted);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar__header { display: flex; align-items: center; justify-content: space-between; padding: 19px 19px 9px; }
+.sidebar__title  { font-size: 21px; font-weight: 700; }
+.compose-btn     { width: 36px; height: 36px; border-radius: 11px; background: var(--green); color: #fff; }
+
+.sidebar__search { padding: 4px 19px 13px; }
+.search-box { gap: 9px; height: 43px; padding: 0 13px; border-radius: 11px; }
+.search-box input { flex: 1; font-size: 14px; color: var(--text); }
+.search-box input::placeholder { color: var(--muted); }
+
+.conversation {
+  display: flex; align-items: center; gap: 13px;
+  width: 100%; padding: 13px 19px; text-align: left; cursor: pointer;
+}
+.conversation:hover { background: var(--bg-soft); }
+.conversation.active { background: var(--bg-active); }
+.conversation__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.conversation__top, .conversation__bottom { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.conversation__name { font-size: 15px; font-weight: 700; }
+.conversation__time { font-size: 13px; color: var(--muted); }
+.conversation__preview { font-size: 14px; color: var(--text-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.conversation.unread .conversation__preview { font-weight: 600; }
+
+/* ---------- Chat ---------- */
+.chat__header { display: flex; align-items: center; justify-content: space-between; padding: 15px 24px; border-bottom: 1px solid var(--border); }
+.chat__user   { display: flex; align-items: center; gap: 13px; }
+.chat__name   { font-size: 16px; font-weight: 700; }
+.chat__status { display: flex; align-items: center; gap: 5px; font-size: 13px; color: var(--muted); }
+.status-dot   { width: 8px; height: 8px; border-radius: 50%; background: var(--green-deep); }
+.chat__actions { display: flex; gap: 17px; color: var(--text-2); }
+
+.chat__messages {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 15px; padding: 24px 24px 0;
+}
+.message { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.message--sent { align-items: flex-end; }
+.bubble {
+  max-width: 320px; padding: 11px 15px; border-radius: 15px;
+  font-size: 15px; line-height: 21.7px;
+  background: var(--bg-received); color: var(--text);
+}
+.message--sent .bubble { background: var(--green); color: #fff; }
+.message__time { font-size: 12px; color: var(--muted); }
+
+.chat__composer { flex: 0 0 auto; margin-top: 8px; padding: 0 24px 48px; }
+.composer { gap: 11px; height: 49px; padding: 0 15px; border-radius: 13px; }
+.composer input { flex: 1; font-size: 15px; color: var(--text); }
+.composer input::placeholder { color: var(--muted); }
+.send-btn { width: 34px; height: 34px; border-radius: 10px; background: var(--green); color: #fff; display: grid; place-items: center; }
+
+/* ---------- Profile panel ---------- */
+.profile__info { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.profile__name { font-size: 18px; font-weight: 700; }
+.profile__role { font-size: 14px; color: var(--muted); }
+.profile__actions { display: flex; gap: 9px; }
+.btn {
+  height: 36px; padding: 0 15px; border-radius: 11px;
+  border: 1px solid var(--border-strong); background: #fff;
+  font-size: 14px; font-weight: 600;
+}
+.btn:hover { background: var(--bg-soft); }
+.divider { width: 100%; height: 1px; background: var(--border); }
+.section-title { align-self: flex-start; font-size: 14px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+
+.file { display: flex; align-items: center; gap: 11px; width: 100%; }
+.file__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: var(--bg-active); color: var(--green-dark); }
+.file__body { display: flex; flex-direction: column; gap: 1px; }
+.file__name { font-size: 14px; font-weight: 600; }
+.file__size { font-size: 12px; color: var(--muted); }

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Messages</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- ===== Sidebar: conversation list ===== -->
+  <aside class="sidebar">
+    <div class="sidebar__header">
+      <h1 class="sidebar__title">Messages</h1>
+      <button class="compose-btn icon-btn" id="new-message-btn" aria-label="New message">
+        <svg class="icon--sm" viewBox="0 0 18 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.2h9"/><path d="M11.7 2.5a2.1 2.1 0 0 1 3 3L5 13.5l-2.9.7.7-2.9 8.9-8.8z"/></svg>
+      </button>
+    </div>
+
+    <div class="sidebar__search">
+      <label class="search-box">
+        <svg class="icon--sm" viewBox="0 0 17 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.8" cy="7.8" r="5.7"/><path d="M14.9 14.9l-3.1-3.1"/></svg>
+        <input type="search" id="search-input" placeholder="Search messages">
+      </label>
+    </div>
+
+    <div class="conversation-list" id="conversation-list">
+      <button class="conversation active unread" data-user="priya">
+        <span class="avatar">PN</span>
+        <span class="conversation__body">
+          <span class="conversation__top"><span class="conversation__name">Priya Nair</span><span class="conversation__time">2m</span></span>
+          <span class="conversation__bottom"><span class="conversation__preview">Sounds good, I will send the files</span><span class="badge">2</span></span>
+        </span>
+      </button>
+
+      <button class="conversation" data-user="design-team">
+        <span class="avatar avatar--mint">DT</span>
+        <span class="conversation__body">
+          <span class="conversation__top"><span class="conversation__name">Design team</span><span class="conversation__time">18m</span></span>
+          <span class="conversation__bottom"><span class="conversation__preview">Daniel: New mockups are ready</span></span>
+        </span>
+      </button>
+
+      <button class="conversation" data-user="sam">
+        <span class="avatar avatar--amber">SW</span>
+        <span class="conversation__body">
+          <span class="conversation__top"><span class="conversation__name">Sam Walker</span><span class="conversation__time">1h</span></span>
+          <span class="conversation__bottom"><span class="conversation__preview">Thanks for the quick reply!</span></span>
+        </span>
+      </button>
+
+      <button class="conversation unread" data-user="marketing">
+        <span class="avatar avatar--red">MK</span>
+        <span class="conversation__body">
+          <span class="conversation__top"><span class="conversation__name">Marketing</span><span class="conversation__time">3h</span></span>
+          <span class="conversation__bottom"><span class="conversation__preview">Aisha: Campaign starts Monday</span><span class="badge">5</span></span>
+        </span>
+      </button>
+
+      <button class="conversation" data-user="lena">
+        <span class="avatar">LT</span>
+        <span class="conversation__body">
+          <span class="conversation__top"><span class="conversation__name">Lena Torres</span><span class="conversation__time">Yesterday</span></span>
+          <span class="conversation__bottom"><span class="conversation__preview">Can we move the call to 4 pm?</span></span>
+        </span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ===== Main chat ===== -->
+  <main class="chat">
+    <header class="chat__header">
+      <div class="chat__user">
+        <span class="avatar avatar--sm">PN</span>
+        <div>
+          <div class="chat__name" id="chat-name">Priya Nair</div>
+          <div class="chat__status"><span class="status-dot"></span><span id="chat-status">Online</span></div>
+        </div>
+      </div>
+      <div class="chat__actions">
+        <button class="icon-btn" id="call-btn" aria-label="Call">
+          <svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="1.6" width="11.2" height="16" rx="1.6"/><path d="M9.6 14.4h.01"/></svg>
+        </button>
+        <button class="icon-btn" id="more-btn" aria-label="More options">
+          <svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 9.6h.01M15.2 9.6h.01M4 9.6h.01"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat__messages" id="message-list">
+      <div class="message">
+        <div class="bubble">Hi Aisha! Did you get the new brand files?</div>
+        <span class="message__time">10:02 AM</span>
+      </div>
+      <div class="message message--sent">
+        <div class="bubble">Yes, got them. They look great.</div>
+        <span class="message__time">10:04 AM</span>
+      </div>
+      <div class="message">
+        <div class="bubble">Perfect. I can send the icon set and fonts today.</div>
+        <span class="message__time">10:05 AM</span>
+      </div>
+      <div class="message message--sent">
+        <div class="bubble">Sounds good, please send them over.</div>
+        <span class="message__time">10:06 AM</span>
+      </div>
+    </div>
+
+    <footer class="chat__composer">
+      <div class="composer">
+        <button class="icon-btn" id="attach-btn" aria-label="Attach file">
+          <svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 4v14M4 9.6h14"/></svg>
+        </button>
+        <input type="text" id="message-input" placeholder="Write a message" autocomplete="off">
+        <button class="send-btn" id="send-btn" aria-label="Send">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 1.3L7.3 8.7"/><path d="M14.7 1.3L10 14.7 7.3 8.7 1.3 6l13.4-4.7z"/></svg>
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ===== Profile panel ===== -->
+  <aside class="profile">
+    <span class="avatar avatar--lg">PN</span>
+    <div class="profile__info">
+      <span class="profile__name">Priya Nair</span>
+      <span class="profile__role">Lead engineer</span>
+    </div>
+    <div class="profile__actions">
+      <button class="btn" id="profile-btn">Profile</button>
+      <button class="btn" id="mute-btn">Mute</button>
+    </div>
+    <div class="divider"></div>
+    <h2 class="section-title">Shared files</h2>
+
+    <div class="file">
+      <span class="file__icon"><svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.2 1.6H4.8a1.6 1.6 0 0 0-1.6 1.6V16a1.6 1.6 0 0 0 1.6 1.6h9.6a1.6 1.6 0 0 0 1.6-1.6V6.4l-4.8-4.8z"/><path d="M11.2 1.6v4.8H16"/></svg></span>
+      <div class="file__body"><span class="file__name">brand-icons.zip</span><span class="file__size">4.2 MB</span></div>
+    </div>
+    <div class="file">
+      <span class="file__icon"><svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.2 1.6H4.8a1.6 1.6 0 0 0-1.6 1.6V16a1.6 1.6 0 0 0 1.6 1.6h9.6a1.6 1.6 0 0 0 1.6-1.6V6.4l-4.8-4.8z"/><path d="M11.2 1.6v4.8H16"/></svg></span>
+      <div class="file__body"><span class="file__name">fonts.zip</span><span class="file__size">1.8 MB</span></div>
+    </div>
+    <div class="file">
+      <span class="file__icon"><svg class="icon" viewBox="0 0 19.2 19.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.2 1.6H4.8a1.6 1.6 0 0 0-1.6 1.6V16a1.6 1.6 0 0 0 1.6 1.6h9.6a1.6 1.6 0 0 0 1.6-1.6V6.4l-4.8-4.8z"/><path d="M11.2 1.6v4.8H16"/></svg></span>
+      <div class="file__body"><span class="file__name">logo-v2.fig</span><span class="file__size">9.6 MB</span></div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- Add your JavaScript here:
+<script src="script.js"></script> -->
+</body>
+</html>
